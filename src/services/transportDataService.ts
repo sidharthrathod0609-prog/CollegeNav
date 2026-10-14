@@ -131,7 +131,7 @@ export function validateDepartureTime(timeStr: string): { valid: boolean; error?
     return { valid: false, error: 'Departure time is required' };
   }
   const clean = timeStr.trim();
-  const pattern = /^\d{1,2}[.:]\d{2}\s*(?:AM|PM|am|pm)$/i;
+  const pattern = /^(0?[1-9]|1[0-2])[.:]([0-5]\d)\s*(?:AM|PM|am|pm)$/i;
   if (!pattern.test(clean) && !clean.toLowerCase().includes('not listed')) {
     return { valid: false, error: 'Time must follow standard 12-hour format (e.g. 7:05 AM)' };
   }

@@ -36,6 +36,9 @@ import {
 import { 
   useTransportData 
 } from './services/transportDataService';
+import {
+  useBoardingData
+} from './services/boardingService';
 import { 
   searchAndRankRoutes 
 } from './utils/recommendations';
@@ -63,6 +66,12 @@ export function App() {
     deleteTransportAdvisory,
     resetToCircularDefault,
   } = useTransportData();
+
+  // Boarding Data Hook (Trips & Student Boarding Requests)
+  const {
+    trips: boardingTrips,
+    requests: boardingRequests,
+  } = useBoardingData();
 
   // Search State
   const [origin, setOrigin] = useState<string>('');
@@ -405,6 +414,8 @@ export function App() {
         routes={routes}
         advisories={advisories}
         syncStatus={syncStatus}
+        trips={boardingTrips}
+        boardingRequests={boardingRequests}
         onUpdateRoute={updateRouteSchedule}
         onPublishAdvisory={publishTransportAdvisory}
         onUpdateAdvisory={updateTransportAdvisory}
