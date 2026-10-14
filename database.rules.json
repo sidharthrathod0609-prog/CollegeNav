@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "transport": {
+      "routes": {
+        ".read": true,
+        ".write": "auth != null && (auth.token.admin === true || auth.token.role === 'transport_admin')"
+      },
+      "advisories": {
+        ".read": true,
+        ".write": "auth != null && (auth.token.admin === true || auth.token.role === 'transport_admin')"
+      },
+      "trips": {
+        ".read": true,
+        "$tripId": {
+          ".write": "auth != null && (auth.token.admin === true || auth.token.role === 'transport_admin' || (auth.token.role === 'conductor' && (auth.token.assignedTrip == $tripId || auth.token.masterConductor == true)))"
+        }
+      },
+      "boarding_requests": {
+        ".read": true,
+        "$reqId": {
+          ".write": "auth != null && (auth.token.admin === true || auth.token.role === 'conductor' || !data.exists() || data.child('studentId').val() == auth.token.studentRollNo)"
+        }
+      }
+    },
+    "fleet_telemetry": {
+      ".read": true,
+      ".write": "auth != null && (auth.token.bus_driver === true || auth.token.role === 'telemetry_node')"
+    }
+  }
+}
