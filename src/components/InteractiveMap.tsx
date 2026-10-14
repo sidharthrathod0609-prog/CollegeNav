@@ -173,12 +173,12 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   const startingLocationName = route ? route.startingLocation : 'Twin Cities Corridors';
 
   return (
-    <div className="relative w-full h-[400px] lg:h-[480px] rounded-2xl overflow-hidden border border-[#E5E2DC] shadow-[0_1px_4px_rgba(15,30,54,0.03)] bg-[#F4F2EC]">
+    <div className="relative isolate z-0 w-full h-[400px] lg:h-[480px] rounded-2xl overflow-hidden border border-[#E5E2DC] shadow-[0_1px_4px_rgba(15,30,54,0.03)] bg-[#F4F2EC]">
       {/* Map Canvas */}
       <div ref={mapContainerRef} className="w-full h-full" />
 
       {/* Floating Header Overlay */}
-      <div className="absolute top-3 left-3 z-[400] flex flex-col gap-1.5 max-w-[280px] sm:max-w-none">
+      <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5 max-w-[280px] sm:max-w-none pointer-events-auto">
         <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-[#DCD8D0] shadow-sm flex items-center gap-2 text-xs">
           <div className="w-2 h-2 rounded-full bg-amber-500"></div>
           <span className="font-bold text-[#0F1E36]">
@@ -191,7 +191,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute top-3 right-3 z-[400] flex items-center gap-1.5">
+      <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 pointer-events-auto">
         <button
           type="button"
           onClick={handleFitBounds}
@@ -204,7 +204,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       </div>
 
       {/* Bottom Route Legend */}
-      <div className="absolute bottom-3 left-3 z-[400] bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-[#DCD8D0] shadow-sm text-[11px] text-slate-600 flex items-center gap-3 flex-wrap">
+      <div className="absolute bottom-3 left-3 z-10 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-[#DCD8D0] shadow-sm text-[11px] text-slate-600 flex items-center gap-3 flex-wrap pointer-events-auto">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
           <span>Origin Terminal</span>

@@ -575,7 +575,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-[#0F1E36]/80 backdrop-blur-xs flex items-center justify-center p-0 sm:p-3 lg:p-4 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[100] overflow-hidden bg-[#0F1E36]/80 backdrop-blur-xs flex items-center justify-center p-0 sm:p-3 lg:p-4 animate-in fade-in duration-200">
       
       {/* ─── Control Center Shell ─── */}
       <div 

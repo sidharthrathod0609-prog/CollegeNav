@@ -320,7 +320,7 @@ export function App() {
             </div>
 
             {/* The Leaflet Map Component with Modern Rounded Frame */}
-            <div className="h-[430px] sm:h-[470px] lg:h-[490px] w-full rounded-3xl overflow-hidden border border-[#E2E8F0] shadow-md">
+            <div className="h-[430px] sm:h-[470px] lg:h-[490px] w-full rounded-3xl overflow-hidden border border-[#E2E8F0] shadow-md relative isolate z-0">
               <InteractiveMap
                 route={activeRouteForMap}
                 allRoutes={routes}

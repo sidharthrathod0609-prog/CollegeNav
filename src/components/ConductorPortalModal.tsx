@@ -198,7 +198,7 @@ export const ConductorPortalModal: React.FC<ConductorPortalModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0F1E36]/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-[#0F1E36]/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-150">
       <div 
         className="bg-white rounded-2xl max-w-3xl w-full border border-[#DCD8D0] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
@@ -649,7 +649,7 @@ export const ConductorPortalModal: React.FC<ConductorPortalModalProps> = ({
 
         {/* Rejection Modal Dialog */}
         {rejectingRequestId && (
-          <div className="fixed inset-0 z-60 bg-black/50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[110] bg-black/50 flex items-center justify-center p-4">
             <div className="bg-white rounded-2xl max-w-md w-full p-5 space-y-4 shadow-2xl border border-slate-300">
               <div className="flex items-center gap-2 font-bold text-rose-800 text-sm">
                 <AlertTriangle className="w-4 h-4" />

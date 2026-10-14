@@ -157,7 +157,7 @@ export const StudentBoardingModal: React.FC<StudentBoardingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0F1E36]/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-[#0F1E36]/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-150">
       <div 
         className="bg-white rounded-2xl max-w-2xl w-full border border-[#DCD8D0] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
