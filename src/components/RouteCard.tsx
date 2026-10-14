@@ -90,59 +90,63 @@ export const RouteCard: React.FC<RouteCardProps> = ({
         </div>
       </div>
 
-      {/* Transit Journey Summary Track: Boarding Point ➔ Corridor ➔ Campus */}
-      <div className="mt-4 pt-4 border-t border-[#F0EEE9] grid grid-cols-[1fr,auto,1fr] gap-3 items-center">
-        
-        {/* Origin Pickup Stop */}
-        <div className="min-w-0 space-y-0.5">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold block">
-            Boarding Point
-          </span>
-          <p className="font-bold text-xs sm:text-sm text-[#0F1E36] truncate flex items-center gap-1" title={originStop.name}>
-            <MapPin className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-            <span className="truncate">{originStop.name}</span>
-          </p>
-          <div className="flex items-center gap-1 text-xs font-mono font-bold text-amber-700">
-            <Clock className="w-3 h-3" />
-            <span>{result.departureTime}</span>
-          </div>
-        </div>
-
-        {/* Intermediate Corridor Track */}
-        <div className="flex flex-col items-center px-2 text-center shrink-0">
-          {route.isIncomplete ? (
-            <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-              Corridor Unlisted
-            </span>
-          ) : (
-            <>
-              <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-tight">
-                {intermediateStopCount} intermediate stop{intermediateStopCount === 1 ? '' : 's'}
-              </span>
-              <div className="w-16 sm:w-24 h-0.5 bg-slate-200 relative my-1.5">
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-amber-500 ring-2 ring-white"></div>
+      {/* Grounded Transit Journey Stage Box */}
+      <div className="mt-4 p-3.5 sm:p-4 rounded-xl bg-[#FAF9F5] border border-[#EBE8E0]">
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          
+          {/* Origin Boarding Point */}
+          <div className="flex items-start gap-2.5 min-w-0 max-w-[45%]">
+            <div className="w-8 h-8 rounded-lg bg-amber-100 border border-amber-300 text-amber-900 flex items-center justify-center shrink-0 mt-0.5">
+              <MapPin className="w-4 h-4 text-amber-700" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-amber-900 bg-amber-200/60 px-1.5 py-0.5 rounded">
+                  Boarding Point
+                </span>
+                <span className="text-xs font-mono font-bold text-amber-800 flex items-center gap-1">
+                  <Clock className="w-3 h-3 text-amber-600" />
+                  {result.departureTime}
+                </span>
               </div>
-              <span className="text-[10px] text-slate-400 font-mono">
-                Direct Highway Corridor
+              <p className="font-bold text-xs sm:text-sm text-[#0F1E36] truncate mt-0.5" title={originStop.name}>
+                {originStop.name}
+              </p>
+            </div>
+          </div>
+
+          {/* Connected Route Corridor Track Indicator */}
+          <div className="flex flex-col items-center justify-center shrink-0 px-2">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-[#DCD8D0] shadow-2xs">
+              <span className="text-[10px] font-mono font-bold text-[#0F1E36]">
+                {intermediateStopCount} {intermediateStopCount === 1 ? 'stop' : 'stops'}
               </span>
-            </>
-          )}
-        </div>
+              <ArrowRight className="w-3 h-3 text-amber-600 shrink-0" />
+            </div>
+            <span className="text-[9px] font-mono text-slate-400 mt-0.5">
+              Direct Corridor
+            </span>
+          </div>
 
-        {/* Destination: College Campus */}
-        <div className="min-w-0 text-right space-y-0.5">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold block">
-            Destination
-          </span>
-          <p className="font-bold text-xs sm:text-sm text-[#0F1E36] truncate flex items-center justify-end gap-1" title={destinationStop.name}>
-            <span className="truncate">{destinationStop.name}</span>
-            <Navigation2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-          </p>
-          <span className="text-[11px] text-emerald-800 font-bold font-mono block">
-            CVR Vastunagar
-          </span>
-        </div>
+          {/* Terminus Destination */}
+          <div className="flex items-start gap-2.5 min-w-0 max-w-[45%] text-right">
+            <div className="min-w-0">
+              <div className="flex items-center justify-end gap-1.5 flex-wrap">
+                <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-emerald-900 bg-emerald-200/60 px-1.5 py-0.5 rounded">
+                  Campus Terminus
+                </span>
+                <span className="text-xs font-bold text-emerald-800 font-mono">CVR Vastunagar</span>
+              </div>
+              <p className="font-bold text-xs sm:text-sm text-[#0F1E36] truncate mt-0.5" title={destinationStop.name}>
+                {destinationStop.name}
+              </p>
+            </div>
+            <div className="w-8 h-8 rounded-lg bg-emerald-100 border border-emerald-300 text-emerald-900 flex items-center justify-center shrink-0 mt-0.5">
+              <Navigation2 className="w-4 h-4 text-emerald-700" />
+            </div>
+          </div>
 
+        </div>
       </div>
 
       {/* Card Actions Footer */}

@@ -94,7 +94,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       const isSelected = stop.id === selectedStopId;
 
       const iconHtml = `
-        <div class="relative flex items-center justify-center">
+        <div class="flex items-center justify-center">
           <div class="${
             isCampus
               ? 'w-7 h-7 bg-emerald-700 ring-3 ring-emerald-200 text-white'
@@ -106,11 +106,6 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
           } rounded-full flex items-center justify-center font-bold text-[10px] transition-transform duration-200 hover:scale-125">
             ${isCampus ? '🎓' : isFirst ? '📍' : isSelected ? '●' : ''}
           </div>
-          ${
-            isCampus || isFirst || isSelected
-              ? `<span class="absolute -bottom-5 whitespace-nowrap px-1.5 py-0.5 rounded bg-[#0F1E36] text-white text-[9px] font-mono shadow-xs">${stop.name.split(' ')[0]}</span>`
-              : ''
-          }
         </div>
       `;
 
@@ -122,6 +117,15 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       });
 
       const marker = L.marker([coord.lat, coord.lng], { icon: stopIcon });
+
+      if (isCampus || isFirst || isSelected) {
+        marker.bindTooltip(stop.name, {
+          permanent: false,
+          direction: 'top',
+          offset: [0, -12],
+          className: 'cvr-map-tooltip'
+        });
+      }
 
       const popupContent = `
         <div class="p-1 font-sans text-xs">
