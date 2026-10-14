@@ -235,33 +235,33 @@ export function App() {
         </div>
 
         {/* 4. Main Responsive Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           {/* Left Column: Route Cards or Empty State */}
-          <div className={`lg:col-span-7 space-y-3.5 sm:space-y-4 ${activeTab === 'map' ? 'hidden lg:block' : 'block'}`}>
+          <div className={`lg:col-span-7 space-y-4 ${activeTab === 'map' ? 'hidden lg:block' : 'block'}`}>
             
             {/* Header info bar */}
-            <div className="flex items-center justify-between pb-0.5">
-              <div className="flex items-center gap-2">
-                <h2 className="text-sm sm:text-base font-bold text-[#0F1E36]">
+            <div className="flex items-center justify-between pb-1 px-1">
+              <div className="flex items-center gap-2.5">
+                <h2 className="text-base sm:text-lg font-black text-[#0F1E36] tracking-tight">
                   {isSearching
                     ? `Matching Routes for "${origin}"`
                     : showAllUnfiltered
-                    ? 'All Official Bus Routes'
-                    : 'Sample Bus Routes'}
+                    ? 'All 54 Official Bus Routes'
+                    : 'Sample Bus Corridors'}
                 </h2>
-                <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-[#FAF9F5] text-[#0F1E36] border border-[#E5E2DC]">
-                  {isSearching ? searchResults.length : showAllUnfiltered ? '54 of 54' : `${displayedResults.length} of 54`}
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-white text-[#0F1E36] border border-[#E2E8F0] shadow-2xs">
+                  {isSearching ? `${searchResults.length} routes` : showAllUnfiltered ? '54 of 54' : `${displayedResults.length} of 54`}
                 </span>
               </div>
-              <span className="text-[11px] text-slate-500 font-mono hidden sm:inline">
-                {isSearching ? 'Exact route search results' : 'Search above to find your exact route'}
+              <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
+                {isSearching ? 'Direct highway & ring-road corridors' : 'Showing sample routes'}
               </span>
             </div>
 
             {/* Results List */}
             {displayedResults.length > 0 ? (
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-4">
                 {displayedResults.map((result) => (
                   <RouteCard
                     key={result.route.id}
@@ -277,16 +277,16 @@ export function App() {
                 ))}
 
                 {!isSearching && (
-                  <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 text-center space-y-2">
+                  <div className="p-4 rounded-2xl bg-amber-50/60 border border-amber-200/70 text-center space-y-2 shadow-2xs">
                     <p className="text-xs font-medium text-amber-950">
-                      Showing {displayedResults.length} sample routes. <strong>Use the search bar above</strong> to find your exact college bus route by pickup point or route number.
+                      Showing {displayedResults.length} sample corridors. <strong>Use the search bar above</strong> to find your exact pickup location or route number.
                     </p>
                     <button
                       type="button"
                       onClick={() => setShowAllUnfiltered(!showAllUnfiltered)}
                       className="text-xs font-bold text-amber-900 underline hover:text-amber-950"
                     >
-                      {showAllUnfiltered ? 'Show only sample routes' : 'Or view all 54 routes list'}
+                      {showAllUnfiltered ? 'Show only sample routes' : 'Or browse all 54 scheduled corridors'}
                     </button>
                   </div>
                 )}
@@ -305,22 +305,22 @@ export function App() {
           {/* Right Column: Interactive Route Map & Stops Timeline */}
           <div className={`lg:col-span-5 space-y-4 ${activeTab === 'routes' ? 'hidden lg:block' : 'block'}`}>
             
-            <div className="flex items-center justify-between pb-0.5">
+            <div className="flex items-center justify-between pb-1 px-1">
               <div className="flex items-center gap-2">
-                <Map className="w-4 h-4 text-amber-700" />
-                <h3 className="text-sm sm:text-base font-bold text-[#0F1E36]">
+                <Map className="w-4 h-4 text-amber-600" />
+                <h3 className="text-base font-black text-[#0F1E36] tracking-tight">
                   {activeResult ? `${activeResult.route.routeLabel} Corridor` : 'Interactive Route Map'}
                 </h3>
               </div>
               {activeResult && !activeResult.route.isIncomplete && (
-                <span className="text-xs font-semibold text-[#0F1E36] bg-[#FAF9F5] px-2 py-0.5 rounded border border-[#E5E2DC]">
+                <span className="text-xs font-bold text-[#0F1E36] bg-white px-2.5 py-0.5 rounded-full border border-[#E2E8F0] shadow-2xs font-mono">
                   {activeResult.route.stops.length} stops
                 </span>
               )}
             </div>
 
-            {/* The Leaflet Map Component */}
-            <div className="h-[420px] sm:h-[460px] lg:h-[480px] w-full">
+            {/* The Leaflet Map Component with Modern Rounded Frame */}
+            <div className="h-[430px] sm:h-[470px] lg:h-[490px] w-full rounded-3xl overflow-hidden border border-[#E2E8F0] shadow-md">
               <InteractiveMap
                 route={activeRouteForMap}
                 allRoutes={routes}
@@ -331,39 +331,48 @@ export function App() {
 
             {/* Map Sidebar Stop Quick Navigator */}
             {activeResult && !activeResult.route.isIncomplete && activeResult.route.stops.length > 0 && (
-              <div className="bg-white rounded-xl border border-[#E5E2DC] p-3.5 sm:p-4 shadow-xs space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#0F1E36] uppercase tracking-wider">
-                    {activeResult.route.routeLabel} Stop Order
-                  </span>
+              <div className="bg-white rounded-2xl border border-[#E2E8F0] p-4 shadow-sm space-y-3">
+                <div className="flex items-center justify-between border-b border-[#F0EEE9] pb-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                    <span className="text-xs font-bold text-[#0F1E36] uppercase tracking-wider">
+                      {activeResult.route.routeLabel} Stop Order
+                    </span>
+                  </div>
                   <button
                     type="button"
                     onClick={() => setModalRoute(activeResult.route)}
                     className="text-xs font-bold text-amber-800 hover:text-amber-950 flex items-center gap-1 hover:underline"
                   >
-                    <span>Full Stop List</span>
+                    <span>Full Details</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="space-y-1 max-h-48 overflow-y-auto pr-1">
+                <div className="space-y-1.5 max-h-52 overflow-y-auto pr-1">
                   {activeResult.route.stops.map((stop, idx) => (
                     <button
                       key={stop.id}
                       type="button"
                       onClick={() => setSelectedStopId(stop.id)}
-                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${
+                      className={`w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition-all ${
                         selectedStopId === stop.id
-                          ? 'bg-amber-50 text-amber-950 font-bold border border-amber-300'
+                          ? 'bg-[#0F1E36] text-amber-300 font-bold shadow-2xs'
                           : 'hover:bg-[#FAF9F5] text-slate-700'
                       }`}
                     >
-                      <div className="flex items-center gap-2 truncate">
-                        <span className="w-4 text-slate-400 font-mono text-[10px]">{idx + 1}.</span>
-                        <span className="truncate">{stop.name}</span>
+                      <div className="flex items-center gap-2.5 truncate">
+                        <span className={`font-mono text-[10px] w-4 text-center font-bold ${selectedStopId === stop.id ? 'text-amber-400' : 'text-slate-400'}`}>
+                          {idx + 1}.
+                        </span>
+                        <span className="truncate font-medium">{stop.name}</span>
                       </div>
                       {stop.scheduledTime && (
-                        <span className="font-mono text-[11px] text-amber-900 bg-amber-50 px-1 rounded font-semibold shrink-0 ml-2">
+                        <span className={`font-mono text-[10px] px-1.5 py-0.5 rounded font-bold shrink-0 ml-2 ${
+                          selectedStopId === stop.id
+                            ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30'
+                            : 'bg-amber-50 text-amber-900 border border-amber-200'
+                        }`}>
                           {stop.scheduledTime}
                         </span>
                       )}

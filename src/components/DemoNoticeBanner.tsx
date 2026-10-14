@@ -7,19 +7,20 @@ export const DemoNoticeBanner: React.FC = () => {
   if (dismissed) return null;
 
   return (
-    <div className="bg-[#FEF3C7] border-b border-amber-200/90 text-amber-950 text-xs sm:text-sm py-2 px-4 shadow-[0_1px_2px_rgba(217,119,6,0.05)]">
-      <div className="max-w-7xl mx-auto flex items-start sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5 sm:mt-0" />
-          <p className="leading-tight">
-            <strong className="font-bold text-amber-950">Official CVR Transit Dataset:</strong>{' '}
-            CollegeNav now operates on all 54 official bus routes extracted from the CVR College circular.{' '}
-            <span className="font-semibold">Driver phone numbers have been omitted for privacy. Live GPS tracking hardware integration is scheduled for Phase 4.</span>
+    <div className="bg-amber-50/70 border-b border-amber-200/60 text-xs py-2 px-4 shadow-2xs backdrop-blur-xs">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-800 flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
+          </span>
+          <p className="leading-tight text-slate-700 text-xs truncate sm:text-clip">
+            <strong className="font-bold text-[#0F1E36]">Official Transit Directory:</strong>{' '}
+            All <strong className="text-[#0F1E36]">54 scheduled CVR routes</strong> extracted directly from the official transport circular. Personal contact numbers excluded for privacy.
           </p>
         </div>
         <button
           onClick={() => setDismissed(true)}
-          className="text-amber-800 hover:text-amber-950 p-1 rounded-md transition-colors shrink-0"
+          className="text-slate-400 hover:text-slate-700 p-1 rounded-md transition-colors shrink-0"
           title="Dismiss notification"
           aria-label="Dismiss banner"
         >
